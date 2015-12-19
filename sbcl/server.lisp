@@ -19,7 +19,11 @@
   (loop do (accept-one l)))
 
 (defun main ()
-  (let ((l (make-listen-socket)))
-    (unwind-protect
-	 (serve l)
-      (sb-bsd-sockets:socket-close l))))
+  (handler-case
+      (let ((l (make-listen-socket)))
+        (unwind-protect
+             (serve l)
+          (sb-bsd-sockets:socket-close l)))
+    (sb-sys:interactive-interrupt ()
+      (format t "Exiting due to interactive interrupt~%")
+      (sb-ext:exit))))
