@@ -16,8 +16,7 @@
       (sb-bsd-sockets:socket-close c))))
 
 (defun serve (l)
-  (accept-one l)
-  (serve l))
+  (loop do (accept-one l)))
 
 (defun main ()
   (let ((l (make-listen-socket)))
