@@ -12,7 +12,7 @@
   (let ((c (sb-bsd-sockets:socket-accept l)))
     (unwind-protect
 	 (let ((stream (sb-bsd-sockets:socket-make-stream c :output t)))
-	   (format stream "Hello world~&"))
+	   (format stream "~A~%" "Hello world"))
       (sb-bsd-sockets:socket-close c))))
 
 (defun serve (l)
