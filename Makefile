@@ -17,7 +17,7 @@ build-python:
 
 build-sbcl:
 	@mkdir -p bin
-	sbcl --eval $$'(progn (load "sbcl/server.lisp") (sb-ext:save-lisp-and-die "bin/sbclserver" :toplevel \'main :executable t))'
+	sbcl --eval "(progn (load \"sbcl/server.lisp\") (sb-ext:save-lisp-and-die \"bin/sbclserver\" :toplevel 'main :executable t))"
 
 clean:
 	@rm -rf bin
